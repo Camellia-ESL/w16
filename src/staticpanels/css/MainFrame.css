@@ -1,0 +1,18 @@
+.main-frame {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 20px);
+    overflow: hidden;
+    z-index: 0;
+    font-size: 13px;
+    font-family: 'NerdFontMono';
+}
+
+.dockable-space {
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    height: calc(100% - 20px);
+}

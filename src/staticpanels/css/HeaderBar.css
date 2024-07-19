@@ -1,0 +1,49 @@
+.header-bar {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(32, 32, 32);
+    -webkit-app-region: drag;
+    /* top highest level */
+    z-index: 9999; 
+    font-family: 'NerdFontMono';
+    font-size: 16px;
+}
+
+.window-controls-container {
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: inherit;
+    gap: 10px;
+    -webkit-app-region: no-drag;
+}
+
+.minimize-btn, .close-btn {
+    width: 13px;
+    height: 13px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+}
+
+.minimize-btn {
+    background: #f1c40f;
+}
+
+.close-btn {
+    background: #e74c3c;
+}
+
+.minimize-btn:hover, .close-btn:hover {
+    scale: 1.1;
+}

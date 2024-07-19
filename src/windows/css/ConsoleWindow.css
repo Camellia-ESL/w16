@@ -1,0 +1,46 @@
+:root {
+    --console-input-box-height: 30px;
+}
+
+.console-window {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.console-display {
+    padding-top: 10px;
+    height: calc(100% - var(--console-input-box-height) - 10px);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
+}
+
+.console-input-box {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    width: 100%;
+    gap: 10px;
+}
+
+.input-intestation {
+    padding-left: 15px;
+    user-select: none;
+}
+
+.input-text-box {
+    flex: 1;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    font-family: 'NerdFontMono';
+    font-size: 13px;
+}
+
+.cmd-result-row {
+    padding-left: 15px;
+}

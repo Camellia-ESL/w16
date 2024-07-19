@@ -1,0 +1,32 @@
+@font-face {
+    font-family: 'NerdFontMono';
+    src: url('../assets/fonts/FiraCodeNerdFontMono-Light.ttf');
+}
+
+/* Customize the scrollbar for WebKit-based browsers */
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+    /* Width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+    /* Transparent background for the scrollbar track */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #921db6;
+    /* Custom color for the scrollbar grip */
+    border-radius: 10px;
+    /* Rounded corners for the scrollbar grip */
+    border: 3px solid transparent;
+    /* Add a border to increase the contrast */
+    background-clip: content-box;
+    /* Clip the background to the content box */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #771794;
+    /* Darker color when hovering over the grip */
+}
