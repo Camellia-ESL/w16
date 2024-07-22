@@ -3,6 +3,7 @@ import helpExecFunc from './cmdsExecFuncs/helpCmd';
 import infoExecFunc from './cmdsExecFuncs/infoCmd'
 import kvkgetExecFunc from './cmdsExecFuncs/kvkgetCmd';
 import kvklistExecFunc from './cmdsExecFuncs/kvklistCmd';
+import kvkloadExecFunc from './cmdsExecFuncs/kvkloadCmd';
 import listconfigExecFunc from './cmdsExecFuncs/listconfigCmd';
 import setkvkpathExecFunc from './cmdsExecFuncs/setkvkpathCmd';
 import svstExecFunc from './cmdsExecFuncs/svstCmd';
@@ -33,6 +34,7 @@ interface CmdsApi {
     listconfig: CmdObj,
     kvkget: CmdObj,
     kvklist: CmdObj,
+    kvkload: CmdObj,
 }
 
 /**
@@ -79,20 +81,21 @@ export const gCmdsApi: CmdsApi = {
     kvkget: {
         description: `
             Downloads a theme/sound/crosshair or an entire creator package containing all the three by doing: kvkget [downloadtype] [typename]
-            Downloadtypes:
+            Downloadtypes supported:
             --theme
             --sound
             --crosshair
             --pack
             Typename: The name of the theme, sound, crosshair or package that you want to download inside quotes ex. "camellias-garden"
             Example usage: kvkget --pack "4ark-main"
+            NOTE: For packages file type isn't needed but for any other resource type it's needed (sounds for example needs the .ogg at the end)
         `,
         execFunc: kvkgetExecFunc
     },
     kvklist: {
         description: `
             Searches all the themes/sounds/crosshairs/packages with the given name or it list them all by doing: kvklist [searchtype] [typename (optional)]
-            Searchtypes:
+            Searchtypes supported:
             --theme
             --sound
             --crosshair
@@ -102,5 +105,15 @@ export const gCmdsApi: CmdsApi = {
             Example usage: kvklist --pack "camellias"
         `,
         execFunc: kvklistExecFunc
+    },
+    kvkload: {
+        description: `
+            Loads a specified category type by doing: kvkload [categoryType] [typename]
+            Categorytypes supported:
+            --palette
+            Typename: The name of the thing that you want to load inside quotes ex. "camellias-garden.ini"
+            Example usage: kvkload --palette "4ark-main"
+        `,
+        execFunc: kvkloadExecFunc
     },
 }

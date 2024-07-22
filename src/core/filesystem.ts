@@ -58,8 +58,23 @@ export class FileSystem {
         await ipcRenderer.invoke('unzip-file', filePath, destPath);
 
     /**
+     * Copies a file
+     * @param filePath The path to the file
+     * @param destPath The destination path where all the files contained in the zip will be unzipped 
+     * @returns null if everything went right and error in any other case
+     */
+    public static copyFile = async (filePath: string, destPath: string) => 
+        await ipcRenderer.invoke('copy-file', filePath, destPath);
+
+    /**
      * Get's the app path
      * @returns the path
      */
     public static getAppPath = async () => await ipcRenderer.invoke('get-app-path');
+
+    /**
+     * Get's the local app data path
+     * @returns the path
+     */
+    public static getLocalAppDataPath = async () => await ipcRenderer.invoke('get-localappdata-path');
 }

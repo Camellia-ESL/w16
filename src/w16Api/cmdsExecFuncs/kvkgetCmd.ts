@@ -14,7 +14,8 @@ export enum CategoryTypeNames {
     THEME = '--theme',
     SOUND = '--sound',
     CROSSHAIR = '--crosshair',
-    PACKAGE = '--pack'
+    PACKAGE = '--pack',
+    PALETTE = '--palette'
 }
 
 // Contains all the category types informations
@@ -37,6 +38,10 @@ export const downloadCategoryTypes: DownloadCategoryTypes = {
     '--pack': {
         downloadUrlPath: '/packages',
         fileExtension: '.zip'
+    },
+    '--palette': {
+        downloadUrlPath: '/palettes',
+        fileExtension: '.ini'
     }
 }
 
@@ -70,6 +75,7 @@ const kvkgetExecFunc = async (args: Array<string>, res: W16CmdExecContext) => {
     }
 
     const isPackage = args[0] === CategoryTypeNames.PACKAGE;
+    const isPalette = args[0] === CategoryTypeNames.PALETTE;
 
     // Adds a empty line
     res.pushResData({ data: ``, displayColor: W16ConsoleDisplayColors.LOG });
@@ -82,9 +88,12 @@ const kvkgetExecFunc = async (args: Array<string>, res: W16CmdExecContext) => {
     const dwFetchUrl: string = downloadUrlPrefix + downloadCategoryTypes[args[0]].downloadUrlPath + '/' + args[1];
 
     // Builds the download path
-    const dwPath: string = isPackage ?
-        await FileSystem.getAppPath() + '\\DownloadTemp\\' + args[1] :
-        User.settings.kovaakLocalPath + "\\" + downloadCategoryTypes[args[0]].kovaakContentDir + "\\" + args[1];
+    const dwPath: string =
+        isPackage ?
+            await FileSystem.getAppPath() + '\\DownloadTemp\\' + args[1] :
+            isPalette ?
+                await FileSystem.getAppPath() + '\\LocalPalettes\\' + args[1] :
+                User.settings.kovaakLocalPath + "\\" + downloadCategoryTypes[args[0]].kovaakContentDir + "\\" + args[1];
 
     res.pushResData({ data: `Resource target url -> ${dwFetchUrl}`, displayColor: W16ConsoleDisplayColors.LOG });
 

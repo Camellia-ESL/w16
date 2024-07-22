@@ -91,6 +91,10 @@ ipcMain.handle('get-app-path', async () => {
   return app.getAppPath();
 });
 
+ipcMain.handle('get-localappdata-path', async () => {
+  return process.env.LOCALAPPDATA;
+});
+
 ipcMain.handle('write-file', async (e, data, filePath) => {
   try {
     fs.ensureDirSync(filePath.replace(/[^\/\\]*$/, ''));
@@ -114,6 +118,17 @@ ipcMain.handle('unzip-file', async (e, filePath, destPath) => {
   try {
     await extract(filePath, { dir: destPath });
     fs.removeSync(filePath);
+  } catch (err) {
+    console.error('Error unzipping file:', err);
+    return err;
+  }
+});
+
+ipcMain.handle('copy-file', async (e, filePath, destPath) => {
+  try {
+    fs.ensureDirSync(filePath.replace(/[^\/\\]*$/, ''));
+    fs.ensureDirSync(destPath.replace(/[^\/\\]*$/, ''));
+    fs.copyFileSync(filePath, destPath);
   } catch (err) {
     console.error('Error unzipping file:', err);
     return err;

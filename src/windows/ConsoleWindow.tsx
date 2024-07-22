@@ -69,6 +69,7 @@ const ConsoleWindow = (): JSX.Element => {
 
     // Refs
     const textBoxInputData = useRef<HTMLInputElement>(null);
+    const consoleDisplay = useRef<HTMLDivElement>(null);
 
     // Set the dock context options
     const docCtx = Dockable.useContentContext();
@@ -95,7 +96,7 @@ const ConsoleWindow = (): JSX.Element => {
 
     return (
         <div className="console-window">
-            <div className="console-display">
+            <div className="console-display" id="console-display" ref={consoleDisplay}>
                 {cmdExecResultsList}
             </div>
             <div className="console-input-box">
